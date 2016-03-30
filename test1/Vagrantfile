@@ -1,0 +1,23 @@
+# Test 1
+#
+# Single box with VirtualBox provider.
+#
+# NOTE: Make sure you have the trusty64 base box installed...
+# vagrant box add trusty64 https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "trusty64"
+  config.vm.hostname = "mytrusty.box"
+  config.vm.network :private_network, ip: "192.168.0.50"
+
+  config.vm.define :test1 do |vmconfig|
+    vmconfig.vm.provider :virtualbox do |vb|
+      vb.name = "test1"
+      vb.customize [
+        "modifyvm", :id,
+        "--cpuexecutioncap", "50",
+        "--memory", "512",
+      ]
+    end
+  end
+end

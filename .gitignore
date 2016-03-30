@@ -1,0 +1,6 @@
+### Vagrant template
+dso_dev/.vagrant/
+test1/.vagrant/
+
+### Jetbrains related files
+.idea
